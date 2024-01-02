@@ -6,7 +6,7 @@
 
 ## Описание:
 
-[Сервис Task Manager](https://task-manager-hzkt.onrender.com) – простой менеджер задач на Laravel.
+[Сервис Task Manager](https://task-manager-cwoy.onrender.com) – простой менеджер задач на Laravel.
 
 ## Минимальные требования:
 
