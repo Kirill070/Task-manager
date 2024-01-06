@@ -23,17 +23,16 @@ $ sudo apt install make
 ## Установка:
 
 ```sh
-$ git clone git@github.com:Kirill070/php-project-9.git
+$ git clone git@github.com:Kirill070/php-project-57.git
 
-$ cd php-project-9
+$ cd php-project-57
 
 $ make install
 ```
 Внимание! Для подключения к базе данных приложение использует переменную окружения _DATABASE_URL_.
-Запросы на создание необходимых таблиц базы данных находятся в файле _database.sql_ репозитория.
 
 ## Запуск:
 
 ```sh
-$ make start
+...
 ```
