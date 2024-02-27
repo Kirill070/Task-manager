@@ -8,12 +8,12 @@
 
         <title>{{ __('layouts.app.app_name') }}</title>
 
+        <!-- Scripts -->
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
+
         <!-- Fonts -->
         <link rel="dns-prefetch" href="//fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
-        <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
         <body>
         <div id="app">
@@ -39,7 +39,7 @@
                                     onclick="event.preventDefault();
                                                     document.getElementById('logout-form').submit();"
                                     class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2">
-                                    {{ __('layouts.app.logout') }}
+                                        {{ __('layouts.app.logout') }}
                                 </a>
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -52,17 +52,17 @@
                             <ul class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
                                 <li>
                                     <a href="" class="block py-2 pl-3 pr-4 text-gray-700 hover:text-blue-700 lg:p-0">
-                                        @lang('layouts.app.tasks')
+                                        {{ __('layouts.app.tasks') }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('task_statuses.index') }}" class="block py-2 pl-3 pr-4 text-gray-700 hover:text-blue-700 lg:p-0">
+                                        {{ __('layouts.app.task_statuses') }}
                                     </a>
                                 </li>
                                 <li>
                                     <a href="" class="block py-2 pl-3 pr-4 text-gray-700 hover:text-blue-700 lg:p-0">
-                                        @lang('layouts.app.task_statuses')
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="" class="block py-2 pl-3 pr-4 text-gray-700 hover:text-blue-700 lg:p-0">
-                                        @lang('layouts.app.labels')
+                                        {{ __('layouts.app.labels') }}
                                     </a>
                                 </li>
                             </ul>
