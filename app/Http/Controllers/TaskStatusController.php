@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class TaskStatusController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(TaskStatus::class, 'task_status');
+    }
     /**
      * Display a listing of the resource.
      */
@@ -31,7 +35,7 @@ class TaskStatusController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $this->validate(
+        $validated = $this->validate(
             $request,
             [
                 'name' => 'required|unique:task_statuses'
@@ -42,9 +46,9 @@ class TaskStatusController extends Controller
         );
 
         $taskStatus = new TaskStatus();
-        $taskStatus->fill($validatedData);
+        $taskStatus->fill($validated);
         $taskStatus->save();
-        flash(__('flashes.task_statuses.store.success'))->success();
+        flash(__('flashes.task_statuses.store'))->success();
 
         return redirect()->route('task_statuses.index');
     }
@@ -84,6 +88,11 @@ class TaskStatusController extends Controller
      */
     public function destroy(TaskStatus $taskStatus)
     {
+        if ($taskStatus->tasks()->exists()) {
+            flash(__('flashes.task_statuses.error'))->error();
+            return back();
+        }
+
         $taskStatus->delete();
 
         flash(__('flashes.task_statuses.deleted'))->success();
