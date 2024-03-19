@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Task;
 use App\Models\TaskStatus;
+use App\Models\Label;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,7 +20,7 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $tasks = Task::paginate();
+        $tasks = Task::paginate(15);
 
         return view('task.index', compact('tasks'));
     }
@@ -29,13 +30,15 @@ class TaskController extends Controller
      */
     public function create()
     {
+        $task = new Task();
         $taskStatuses = TaskStatus::all();
         $users = User::all();
-        //$labels = Label::all();
+        $labels = Label::all();
         return view('task.create', compact(
+            'task',
             'taskStatuses',
             'users',
-            //'labels'//
+            'labels'
         ));
     }
 
@@ -82,12 +85,12 @@ class TaskController extends Controller
     {
         $taskStatuses = TaskStatus::all();
         $users = User::all();
-        //$labels = Label::all();
+        $labels = Label::all();
         return view('task.edit', compact(
             'task',
             'taskStatuses',
             'users',
-            // 'labels'
+            'labels'
         ));
     }
 

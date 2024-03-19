@@ -16,7 +16,7 @@ class TaskStatusController extends Controller
      */
     public function index()
     {
-        $taskStatuses = TaskStatus::paginate();
+        $taskStatuses = TaskStatus::paginate(10);
 
         return view('task_status.index', compact('taskStatuses'));
     }
@@ -27,6 +27,7 @@ class TaskStatusController extends Controller
     public function create()
     {
         $taskStatus = new TaskStatus();
+
         return view('task_status.create', compact('taskStatus'));
     }
 
@@ -78,8 +79,8 @@ class TaskStatusController extends Controller
 
         $taskStatus->fill($validatedData);
         $taskStatus->save();
-
         flash(__('flashes.task_statuses.updated'))->success();
+
         return redirect()->route('task_statuses.index');
     }
 
@@ -96,6 +97,7 @@ class TaskStatusController extends Controller
         $taskStatus->delete();
 
         flash(__('flashes.task_statuses.deleted'))->success();
+
         return redirect()->route('task_statuses.index');
     }
 }
