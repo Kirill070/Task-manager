@@ -64,8 +64,14 @@ class TaskController extends Controller
 
         $task = new Task();
         $task->fill($validated);
+        $labels = collect($request->input('labels'));
+
         $task->save();
-        flash(__('flashes.tasks.store.success'))->success();
+
+        if (isset($labels)) {
+            $task->labels()->attach($labels);
+        }
+        flash(__('flashes.tasks.store'))->success();
 
         return redirect()->route('tasks.index');
     }
@@ -112,8 +118,15 @@ class TaskController extends Controller
             ]
         );
 
+        $labels = collect($request->input('labels'));
+
         $task->fill($validated);
         $task->save();
+
+        if (isset($labels)) {
+            $task->labels()->sync($labels);
+        }
+  
         flash(__('flashes.tasks.updated'))->success();
 
         return redirect()->route('tasks.index');
@@ -124,6 +137,7 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
+        $task->labels()->detach();
         $task->delete();
         flash(__('flashes.tasks.deleted'))->success();
 

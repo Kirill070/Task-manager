@@ -37,7 +37,7 @@
             {{ Form::select('assigned_to_id', $users->pluck('name', 'id'), null, ['class' => 'rounded border-gray-300 w-1/3', 'placeholder' => '----------'] )}}
         </div>
         <div class="mt-2">
-            {{Form::label('labels', __('tasks.create.labels.assigned_to_id'))}}
+            {{Form::label('labels', __('tasks.create.labels.labels'))}}
         </div>
         <div>
             {{Form::select('labels', $labels->pluck('name', 'id'), null, ['placeholder' => '', 'multiple' => 'multiple', 'name' => 'labels[]', 'class' => 'rounded border-gray-300 w-1/3 h-32'])}}
