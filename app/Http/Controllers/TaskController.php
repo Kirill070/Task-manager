@@ -8,6 +8,8 @@ use App\Models\Label;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Spatie\QueryBuilder\QueryBuilder;
+use Spatie\QueryBuilder\AllowedFilter;
 
 class TaskController extends Controller
 {
@@ -18,11 +20,27 @@ class TaskController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $tasks = Task::paginate(15);
+        $tasks = QueryBuilder::for(Task::class)
+            ->allowedFilters([
+                'name',
+                AllowedFilter::exact('status_id'),
+                AllowedFilter::exact('created_by_id'),
+                AllowedFilter::exact('assigned_to_id'),
+            ])
+            ->orderBy('id')
+            ->paginate(15);
 
-        return view('task.index', compact('tasks'));
+        $taskStatusesForFilter = TaskStatus::pluck('name', 'id');
+        $usersForFilter = User::pluck('name', 'id');
+        $filter = $request->input('filter');
+        return view('task.index', compact(
+            'tasks',
+            'taskStatusesForFilter',
+            'usersForFilter',
+            'filter'
+        ));
     }
 
     /**
@@ -56,7 +74,7 @@ class TaskController extends Controller
                 'assigned_to_id' => 'nullable|integer',
             ],
             [
-                'name.unique' => __('validation.task.unique')
+                'name.unique' => __('tasks.validation.unique')
             ]
         );
 
@@ -64,13 +82,14 @@ class TaskController extends Controller
 
         $task = new Task();
         $task->fill($validated);
-        $labels = collect($request->input('labels'));
+        $labels = collect($request->input('labels'))->whereNotNull();
 
         $task->save();
 
         if (isset($labels)) {
             $task->labels()->attach($labels);
         }
+
         flash(__('flashes.tasks.store'))->success();
 
         return redirect()->route('tasks.index');
@@ -123,10 +142,8 @@ class TaskController extends Controller
         $task->fill($validated);
         $task->save();
 
-        if (isset($labels)) {
-            $task->labels()->sync($labels);
-        }
-  
+        $task->labels()->sync($labels);
+
         flash(__('flashes.tasks.updated'))->success();
 
         return redirect()->route('tasks.index');

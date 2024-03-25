@@ -5,6 +5,25 @@
     <h1 class="mb-5">{{ __('tasks.index.header') }}</h1>
 
     <div class="w-full flex items-center">
+        <div>
+            {{ Form::open(['route' => 'tasks.index', 'method' => 'get']) }}
+            <div class="flex">
+                <div>
+                    {{ Form::select('filter[status_id]', $taskStatusesForFilter, Arr::get($filter, 'status_id', ''), ['class' => 'rounded border-gray-300', 'placeholder' => __('tasks.index.placeholders.status_id')]) }}
+                </div>
+                <div>
+                    {{ Form::select('filter[created_by_id]', $usersForFilter, Arr::get($filter, 'created_by_id', ''), ['class' => 'ml-2 rounded border-gray-300', 'placeholder' => __('tasks.index.placeholders.created_by_id')]) }}
+                </div>
+                <div>
+                    {{ Form::select('filter[assigned_to_id]', $usersForFilter, Arr::get($filter, 'assigned_to_id', ''), ['class' => 'ml-2 rounded border-gray-300', 'placeholder' => __('tasks.index.placeholders.assigned_to_id')]) }}
+                </div>
+                <div>
+                    {{ Form::submit(__('tasks.index.filter_button'), ['class' => 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2']) }}
+                </div>
+                {{ Form::close() }}
+            </div>
+        </div>
+
         <div class="ml-auto">
             @can('create', App\Models\Task::class)
             <a href="{{ route('tasks.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2">

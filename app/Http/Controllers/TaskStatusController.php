@@ -42,7 +42,7 @@ class TaskStatusController extends Controller
                 'name' => 'required|unique:task_statuses'
             ],
             [
-                'name.unique' => __('validation.task_status.unique')
+                'name.unique' => __('task_statuses.validation.unique')
             ]
         );
 

@@ -74,7 +74,7 @@ class LabelController extends Controller
                 'name' => 'required|unique:labels' . $label->id,
             ],
             [
-                'name.unique' => __('validation.label.unique')
+                'name.unique' => __('labels.validation.unique')
             ]
         );
 
