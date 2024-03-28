@@ -71,7 +71,7 @@ class LabelController extends Controller
         $validated = $this->validate(
             $request,
             [
-                'name' => 'required|unique:labels' . $label->id,
+                'name' => 'required|unique:labels,name' . $label->id,
             ],
             [
                 'name.unique' => __('labels.validation.unique')

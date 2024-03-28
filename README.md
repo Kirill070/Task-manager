@@ -34,5 +34,6 @@ $ make install
 ## Запуск:
 
 ```sh
-...
+php artisan migrate:refresh --seed --force
+php artisan serve
 ```

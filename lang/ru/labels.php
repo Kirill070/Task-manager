@@ -16,7 +16,8 @@ return [
     'edit' => [
         'form_header' => 'Изменение метки',
         'labels' => [
-            'name' => 'Имя'
+            'name' => 'Имя',
+            'description' => 'Описание'
         ],
         'buttons' => [
             'update' => 'Обновить'
