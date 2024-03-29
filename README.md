@@ -1,7 +1,7 @@
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/Kirill070/php-project-57/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/Kirill070/php-project-57/actions)<br>
-<a href="https://codeclimate.com/github/Kirill070/php-project-57/maintainability"><img src="https://api.codeclimate.com/v1/badges/83bcacae15c7fa043f1c/maintainability" /></a><br>
-<a href="https://codeclimate.com/github/Kirill070/php-project-57/test_coverage"><img src="https://api.codeclimate.com/v1/badges/83bcacae15c7fa043f1c/test_coverage" /></a><br>
+[![Maintainability](https://api.codeclimate.com/v1/badges/7c50d6378e0352b4497d/maintainability)](https://codeclimate.com/github/Kirill070/php-project-57/maintainability)<br>
+[![Test Coverage](https://api.codeclimate.com/v1/badges/7c50d6378e0352b4497d/test_coverage)](https://codeclimate.com/github/Kirill070/php-project-57/test_coverage)<br>
 [![Task Manager](https://github.com/Kirill070/php-project-57/actions/workflows/my-check.yml/badge.svg)](https://github.com/Kirill070/php-project-57/actions/workflows/my-check.yml)<br>
 
 ## Описание:
@@ -27,7 +27,7 @@ $ git clone git@github.com:Kirill070/php-project-57.git
 
 $ cd php-project-57
 
-$ make install
+$ make setup
 ```
 Внимание! Для подключения к базе данных приложение использует переменную окружения _DATABASE_URL_.
 
