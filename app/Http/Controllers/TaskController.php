@@ -83,10 +83,9 @@ class TaskController extends Controller
         $task = new Task();
         $task->fill($validated);
         $labels = collect($request->input('labels'))->whereNotNull();
-
         $task->save();
 
-        if (isset($labels)) {
+        if ($labels) {
             $task->labels()->attach($labels);
         }
 
