@@ -1,4 +1,7 @@
 <x-guest-layout>
+
+<h2 class="text-center"><a href="{{ route('home') }}">{{ __('auth.app_name') }}</a></h2>
+
     <form method="POST" action="{{ route('register') }}">
         @csrf
 
@@ -44,9 +47,9 @@
                 {{ __('auth.already_registered') }}
             </a>
 
-            <x-primary-button class="ms-4">
+            <button type="submit" class="inline-flex items-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-4">
                 {{ __('auth.register_button') }}
-            </x-primary-button>
+            </button>
         </div>
     </form>
 </x-guest-layout>
