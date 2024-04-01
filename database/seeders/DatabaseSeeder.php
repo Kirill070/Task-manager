@@ -9,7 +9,6 @@ use App\Models\User;
 use App\Models\TaskStatus;
 use App\Models\Label;
 use App\Models\Task;
-    
 
 class DatabaseSeeder extends Seeder
 {
@@ -26,7 +25,7 @@ class DatabaseSeeder extends Seeder
                 'name' => $taskStatus['name']
             ]);
         }
-        
+
         $labels =  Yaml::parseFile(database_path('seeds/labels.yaml'));
         foreach ($labels as $label) {
             Label::firstOrCreate([

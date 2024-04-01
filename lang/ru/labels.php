@@ -33,7 +33,7 @@ return [
             'create' => 'Создать'
         ]
     ],
-    'validation'=> [
+    'validation' => [
         'unique' => 'Метка с таким именем уже существует',
         'required' => 'Это обязательное поле'
     ]

@@ -53,7 +53,7 @@ return [
         'status_id' => 'Статус',
         'labels' => 'Метки'
     ],
-    'validation'=> [
+    'validation' => [
         'unique' => 'Задача с таким именем уже существует',
         'required' => 'Это обязательное поле'
     ]
