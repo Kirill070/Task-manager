@@ -85,7 +85,7 @@ class TaskController extends Controller
         $labels = collect($request->input('labels'))->whereNotNull();
         $task->save();
 
-        if ($labels) {
+        if ($labels->isNotEmpty()) {
             $task->labels()->attach($labels);
         }
 
