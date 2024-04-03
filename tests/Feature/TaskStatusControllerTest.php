@@ -12,7 +12,6 @@ class TaskStatusControllerTest extends TestCase
 {
     private User $user;
     private TaskStatus $taskStatus;
-    private Task $task;
 
     public function setUp(): void
     {
@@ -71,7 +70,7 @@ class TaskStatusControllerTest extends TestCase
 
     public function testDeleteIfAssociatedWithTask(): void
     {
-        $this->task = Task::factory()->create(['status_id' => $this->taskStatus->id]);
+        Task::factory()->create(['status_id' => $this->taskStatus->id]);
         $response = $this->delete(route('task_statuses.destroy', ['task_status' => $this->taskStatus]));
         $this->assertDatabaseHas('task_statuses', ['id' => $this->taskStatus->id]);
         $response->assertRedirect();
