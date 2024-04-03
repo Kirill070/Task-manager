@@ -39,7 +39,7 @@ class TaskControllerTest extends TestCase
         $response->assertOk();
     }
 
-    public function testStore()
+    public function testStore(): void
     {
         $data = ['name' => 'Task', 'status_id' => TaskStatus::factory()->create()->id];
 
@@ -55,7 +55,7 @@ class TaskControllerTest extends TestCase
         $response->assertOk();
     }
 
-    public function testUpdate()
+    public function testUpdate(): void
     {
         $data = ['name' => 'NewTask', 'status_id' => TaskStatus::factory()->create()->id];
 
@@ -65,7 +65,7 @@ class TaskControllerTest extends TestCase
         $this->assertDatabaseHas('tasks', $data);
     }
 
-    public function testDelete()
+    public function testDelete(): void
     {
         $response = $this->delete(route('tasks.destroy', ['task' => $this->task]));
         $response->assertSessionHasNoErrors();
