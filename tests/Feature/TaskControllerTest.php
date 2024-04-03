@@ -2,7 +2,6 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\User;
@@ -11,8 +10,6 @@ use App\Models\TaskStatus;
 
 class TaskControllerTest extends TestCase
 {
-    use RefreshDatabase;
-
     private User $user;
     private Task $task;
 
@@ -50,6 +47,12 @@ class TaskControllerTest extends TestCase
         $response->assertSessionHasNoErrors();
         $response->assertRedirect();
         $this->assertDatabaseHas('tasks', $data);
+    }
+
+    public function testEdit(): void
+    {
+        $response = $this->get(route('tasks.edit', ['task' => $this->task]));
+        $response->assertOk();
     }
 
     public function testUpdate()

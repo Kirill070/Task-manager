@@ -2,18 +2,17 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\User;
 use App\Models\Label;
+use App\Models\Task;
 
 class LabelControllerTest extends TestCase
 {
-    use RefreshDatabase;
-
     private User $user;
     private Label $label;
+    private Task $task;
 
     public function setUp(): void
     {
@@ -21,6 +20,7 @@ class LabelControllerTest extends TestCase
         $this->user = User::factory()->create();
         $this->actingAs($this->user);
         $this->label = Label::factory()->create();
+        $this->task = Task::factory()->create();
     }
 
     public function testIndex(): void
@@ -35,7 +35,7 @@ class LabelControllerTest extends TestCase
         $response->assertOk();
     }
 
-    public function testStore()
+    public function testStore(): void
     {
         $data = ['name' => 'Label'];
 
@@ -45,7 +45,13 @@ class LabelControllerTest extends TestCase
         $this->assertDatabaseHas('labels', $data);
     }
 
-    public function testUpdate()
+    public function testEdit(): void
+    {
+        $response = $this->get(route('labels.edit', ['label' => $this->label]));
+        $response->assertOk();
+    }
+
+    public function testUpdate(): void
     {
         $data = ['name' => 'NewLabel'];
 
@@ -55,11 +61,19 @@ class LabelControllerTest extends TestCase
         $this->assertDatabaseHas('labels', $data);
     }
 
-    public function testDelete()
+    public function testDelete(): void
     {
         $response = $this->delete(route('labels.destroy', ['label' => $this->label]));
         $response->assertSessionHasNoErrors();
         $response->assertRedirect();
         $this->assertDatabaseMissing('labels', ['id' => $this->label->id]);
+    }
+
+    public function testDeleteIfAssociatedWithTask(): void
+    {
+        $this->task->labels()->attach(['label' => $this->label->id]);
+        $response = $this->delete(route('labels.destroy', ['label' => $this->label]));
+        $this->assertDatabaseHas('labels', ['id' => $this->label->id]);
+        $response->assertRedirect();
     }
 }

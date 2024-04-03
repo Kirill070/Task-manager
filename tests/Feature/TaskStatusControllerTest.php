@@ -2,18 +2,17 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\User;
 use App\Models\TaskStatus;
+use App\Models\Task;
 
 class TaskStatusControllerTest extends TestCase
 {
-    use RefreshDatabase;
-
     private User $user;
     private TaskStatus $taskStatus;
+    private Task $task;
 
     public function setUp(): void
     {
@@ -36,7 +35,7 @@ class TaskStatusControllerTest extends TestCase
         $response->assertOk();
     }
 
-    public function testStore()
+    public function testStore(): void
     {
         $data = ['name' => 'TaskStatus'];
 
@@ -46,7 +45,13 @@ class TaskStatusControllerTest extends TestCase
         $this->assertDatabaseHas('task_statuses', $data);
     }
 
-    public function testUpdate()
+    public function testEdit(): void
+    {
+        $response = $this->get(route('task_statuses.edit', ['task_status' => $this->taskStatus]));
+        $response->assertOk();
+    }
+
+    public function testUpdate(): void
     {
         $data = ['name' => 'NewTaskStatus'];
 
@@ -56,11 +61,19 @@ class TaskStatusControllerTest extends TestCase
         $this->assertDatabaseHas('task_statuses', $data);
     }
 
-    public function testDelete()
+    public function testDelete(): void
     {
         $response = $this->delete(route('task_statuses.destroy', ['task_status' => $this->taskStatus]));
         $response->assertSessionHasNoErrors();
         $response->assertRedirect();
-        $this->assertDatabaseMissing('labels', ['id' => $this->taskStatus->id]);
+        $this->assertDatabaseMissing('task_statuses', ['id' => $this->taskStatus->id]);
+    }
+
+    public function testDeleteIfAssociatedWithTask(): void
+    {
+        $this->task = Task::factory()->create(['status_id' => $this->taskStatus->id]);
+        $response = $this->delete(route('task_statuses.destroy', ['task_status' => $this->taskStatus]));
+        $this->assertDatabaseHas('task_statuses', ['id' => $this->taskStatus->id]);
+        $response->assertRedirect();
     }
 }
