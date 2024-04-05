@@ -78,10 +78,9 @@ class TaskController extends Controller
             ]
         );
 
-        $validated['created_by_id'] = Auth::id();
+        $currentUser = Auth::user();
+        $task = $currentUser->createdTasks()->create($validated);
 
-        $task = new Task();
-        $task->fill($validated);
         $labels = collect($request->input('labels'))->whereNotNull();
         $task->save();
 
@@ -132,7 +131,7 @@ class TaskController extends Controller
                 'status_id' => 'required|integer',
             ],
             [
-                'name.unique' => __('validation.task.unique')
+                'name.unique' => __('tasks.validation.unique')
             ]
         );
 
