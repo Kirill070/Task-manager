@@ -36,13 +36,17 @@ class DatabaseSeeder extends Seeder
 
         $tasks = Yaml::parseFile(database_path('seeds/tasks.yaml'));
         foreach ($tasks as $task) {
-            Task::firstOrCreate([
-                'name' => $task['name'],
-                'description' => $task['description'],
-                'status_id' => TaskStatus::inRandomOrder()->first()->id,
-                'created_by_id' => User::inRandomOrder()->first()->id,
-                'assigned_to_id' => User::inRandomOrder()->first()->id,
-            ]);
+            $existingTask = Task::where('name', $task['name'])->first();
+
+            if (!$existingTask) {
+                Task::create([
+                    'name' => $task['name'],
+                    'description' => $task['description'],
+                    'status_id' => TaskStatus::inRandomOrder()->first()->id,
+                    'created_by_id' => User::inRandomOrder()->first()->id,
+                    'assigned_to_id' => User::inRandomOrder()->first()->id,
+                ]);
+            }
         }
 
         $tasks = Task::all();

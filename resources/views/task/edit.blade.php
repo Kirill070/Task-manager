@@ -4,7 +4,7 @@
 <div class="grid col-span-full">
     <h1 class="mb-5">{{ __('tasks.edit.form_header') }}</h1>
 
-    {{ Form::model($task, ['route' => ['tasks.update', $task], 'method' => 'patch', 'class' => 'w-50']) }}
+    {{ Form::model($task, ['route' => ['tasks.update', $task], 'method' => 'PATCH', 'class' => 'w-50']) }}
     <div class="flex flex-col">
         <div>
             {{ Form::label('name', __('tasks.edit.labels.name')) }}

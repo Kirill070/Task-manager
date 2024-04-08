@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Spatie\QueryBuilder\QueryBuilder;
 use Spatie\QueryBuilder\AllowedFilter;
+use Illuminate\Validation\Rule;
 
 class TaskController extends Controller
 {
@@ -72,12 +73,14 @@ class TaskController extends Controller
                 'status_id' => 'required|exists:task_statuses,id',
                 'description' => 'nullable|string',
                 'assigned_to_id' => 'nullable|integer',
+                'label' => 'nullable|array',
             ],
             [
                 'name.unique' => __('tasks.validation.unique')
             ]
         );
 
+        /** @var \App\Models\User $currentUser */
         $currentUser = Auth::user();
         $task = $currentUser->createdTasks()->create($validated);
 
@@ -125,10 +128,15 @@ class TaskController extends Controller
         $validated = $this->validate(
             $request,
             [
-                'name' => 'required|unique:tasks,name,' . $task->id,
+                //'name' => 'required|unique:tasks,name,' . $task->id,
+                'name' => [
+                    'required',
+                    Rule::unique('tasks')->ignore($task),
+                ],
                 'description' => 'nullable|string',
                 'assigned_to_id' => 'nullable|integer',
                 'status_id' => 'required|integer',
+                'label' => 'nullable|array',
             ],
             [
                 'name.unique' => __('tasks.validation.unique')
