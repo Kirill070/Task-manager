@@ -128,11 +128,7 @@ class TaskController extends Controller
         $validated = $this->validate(
             $request,
             [
-                //'name' => 'required|unique:tasks,name,' . $task->id,
-                'name' => [
-                    'required',
-                    Rule::unique('tasks')->ignore($task),
-                ],
+                'name' => 'required|unique:tasks,name,' . $task->id,
                 'description' => 'nullable|string',
                 'assigned_to_id' => 'nullable|integer',
                 'status_id' => 'required|integer',
