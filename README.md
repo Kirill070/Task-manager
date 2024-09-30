@@ -5,8 +5,7 @@
 [![Task Manager](https://github.com/Kirill070/php-project-57/actions/workflows/my-check.yml/badge.svg)](https://github.com/Kirill070/php-project-57/actions/workflows/my-check.yml)<br>
 
 ## Описание:
-
-[Сервис Task Manager](https://task-manager-cwoy.onrender.com) – простой менеджер задач на Laravel.
+Сервис Task Manager – простой менеджер задач на Laravel.
 
 ## Минимальные требования:
 
