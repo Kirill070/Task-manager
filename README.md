@@ -1,7 +1,5 @@
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/Kirill070/Task-manager/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/Kirill070/Task-manager/actions)<br>
-[![Maintainability](https://api.codeclimate.com/v1/badges/7c50d6378e0352b4497d/maintainability)](https://codeclimate.com/github/Kirill070/Task-manager/maintainability)<br>
-[![Test Coverage](https://api.codeclimate.com/v1/badges/7c50d6378e0352b4497d/test_coverage)](https://codeclimate.com/github/Kirill070/Task-manager/test_coverage)<br>
 [![Task Manager](https://github.com/Kirill070/Task-manager/actions/workflows/my-check.yml/badge.svg)](https://github.com/Kirill070/Task-manager/actions/workflows/my-check.yml)<br>
 
 ## Описание:
