@@ -1,8 +1,8 @@
 ### Hexlet tests and linter status:
-[![Actions Status](https://github.com/Kirill070/php-project-57/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/Kirill070/php-project-57/actions)<br>
-[![Maintainability](https://api.codeclimate.com/v1/badges/7c50d6378e0352b4497d/maintainability)](https://codeclimate.com/github/Kirill070/php-project-57/maintainability)<br>
-[![Test Coverage](https://api.codeclimate.com/v1/badges/7c50d6378e0352b4497d/test_coverage)](https://codeclimate.com/github/Kirill070/php-project-57/test_coverage)<br>
-[![Task Manager](https://github.com/Kirill070/php-project-57/actions/workflows/my-check.yml/badge.svg)](https://github.com/Kirill070/php-project-57/actions/workflows/my-check.yml)<br>
+[![Actions Status](https://github.com/Kirill070/Task-manager/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/Kirill070/Task-manager/actions)<br>
+[![Maintainability](https://api.codeclimate.com/v1/badges/7c50d6378e0352b4497d/maintainability)](https://codeclimate.com/github/Kirill070/Task-manager/maintainability)<br>
+[![Test Coverage](https://api.codeclimate.com/v1/badges/7c50d6378e0352b4497d/test_coverage)](https://codeclimate.com/github/Kirill070/Task-manager/test_coverage)<br>
+[![Task Manager](https://github.com/Kirill070/Task-manager/actions/workflows/my-check.yml/badge.svg)](https://github.com/Kirill070/Task-manager/actions/workflows/my-check.yml)<br>
 
 ## Описание:
 Сервис Task Manager – простой менеджер задач на Laravel.
@@ -22,9 +22,9 @@ $ sudo apt install make
 ## Установка:
 
 ```sh
-$ git clone git@github.com:Kirill070/php-project-57.git
+$ git clone git@github.com:Kirill070/Task-manager.git
 
-$ cd php-project-57
+$ cd Task-manager
 
 $ make setup
 ```
