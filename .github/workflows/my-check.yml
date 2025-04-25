@@ -14,15 +14,13 @@ jobs:
         run: make setup
       - name: Run linter
         run: make lint
+      - name: Run tests and generate code coverage
+        run: make test-coverage
       - name: Run test & publish code coverage
         uses: qltysh/qlty-action/coverage@v1
         with:
          token: ${{ secrets.QLTY_COVERAGE_TOKEN }}
-         files: coverage/clover.xml
-      #  uses: paambaati/codeclimate-action@v5.0.0
-      #  env:
-      #    CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
-      #  with:
-         coverageCommand: make test-coverage
-         coverageLocations: ${{github.workplace}}/build/logs/clover.xml:clover
-         debug: true
+         files: build/logs/clover.xml
+         verbose: true
+         skip-errors: true
+         skip-missing-files: false
