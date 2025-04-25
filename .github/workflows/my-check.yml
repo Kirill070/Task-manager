@@ -15,7 +15,7 @@ jobs:
       - name: Run linter
         run: make lint
       - name: Run test & publish code coverage
-      -  uses: qltysh/qlty-action/coverage@v1
+      - uses: qltysh/qlty-action/coverage@v1
         with:
          token: {{secrets.QLTY_COVERAGE_TOKEN}}
          files: coverage/clover.xml
