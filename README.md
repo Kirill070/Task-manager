@@ -2,6 +2,7 @@
 [![Actions Status](https://github.com/Kirill070/Task-manager/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/Kirill070/Task-manager/actions)<br>
 <a href="https://qlty.sh/gh/Kirill070/projects/Task-manager"><img src="https://qlty.sh/badges/01188eff-28c3-40f5-b2de-b6cb24a03b7f/maintainability.svg" alt="Maintainability" /></a><br>
 [![Task Manager](https://github.com/Kirill070/Task-manager/actions/workflows/my-check.yml/badge.svg)](https://github.com/Kirill070/Task-manager/actions/workflows/my-check.yml)<br>
+<a href="https://qlty.sh/gh/Kirill070/projects/Page-analyzer"><img src="https://qlty.sh/badges/64cf3d78-99d6-419e-a302-a4e360b16ff2/test_coverage.svg" alt="Code Coverage" /></a><br>
 
 ## Описание:
 Сервис Task Manager – простой менеджер задач на Laravel.
@@ -27,7 +28,7 @@ $ cd Task-manager
 
 $ make setup
 ```
-Внимание! Для подключения к базе данных приложение использует переменную окружения _DATABASE_URL_.
+Для подключения к базе данных приложение использует переменную окружения _DATABASE_URL_.
 
 ## Запуск:
 
