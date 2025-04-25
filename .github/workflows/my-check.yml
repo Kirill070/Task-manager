@@ -16,8 +16,9 @@ jobs:
         run: make lint
       - name: Run test & publish code coverage
         uses: qltysh/qlty-action/coverage@v1
+        env:
+         QLTY_COVERAGE_TOKEN: ${{ secrets.QLTY_COVERAGE_TOKEN }}
         with:
-         token: {{secrets.QLTY_COVERAGE_TOKEN}}
          files: coverage/clover.xml
       #  uses: paambaati/codeclimate-action@v5.0.0
       #  env:
